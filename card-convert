@@ -1,0 +1,85 @@
+
+    // Write a program that takes user input describing a playing card in the following shorthand notation:
+    // A - Ace; 2...10 - card values; J - Jack, Q - Queen, K - King, D - Diamonds, H - Hearts, S - Spades, C - Clubs
+    // Print out the full description of the card. For example,
+    // Enter the card notation: QS
+    // Queen of Spades
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string convert(string a);
+string convert2(string a);
+
+int main()
+{
+    string card = "";
+    cout << "What is your card: ";
+    cin >> card;
+    string one = card.substr(0, 1);
+    string two = card.substr(1, 1);
+    
+    one = convert(one);
+    two = convert2(two);
+    if (one == "False" || two == "False")
+    {
+        cout << "Not a card." << endl;
+        return 0;
+    }
+    else
+        cout << one << " of " << two << endl;
+    
+    return 0;
+}
+
+string convert(string a)
+{
+    if (a == "A")
+        a = "Ace";
+    else if (a == "J")
+        a = "Jack";
+    else if (a == "Q")
+        a = "Queen";
+    else if (a == "K")
+        a = "King";
+    else if (a == "2")
+        a = "Two";
+    else if (a == "3")
+        a = "Three";
+    else if (a == "4")
+        a = "Four";
+    else if (a == "5")
+        a = "Five";
+    else if (a == "6")
+        a = "Six";
+    else if (a == "7")
+        a = "Seven";
+    else if (a == "8")
+        a = "Eight";
+    else if (a == "9")
+        a = "Nine";
+    else if (a == "10")
+        a = "Ten";
+    else
+        a = "False";
+    
+    return a;
+}
+
+string convert2(string a)
+{
+    if (a == "H")
+        a = "Hearts";
+    else if (a == "D")
+        a = "Diamonds";
+    else if (a == "S")
+        a = "Spades";
+    else if (a == "C")
+        a = "Clubs";
+    else
+        a = "False";
+
+    return a;
+}
+
