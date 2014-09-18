@@ -3,10 +3,10 @@
 #include <cstdlib>
 using namespace std;
 
-int chooseTheDoor(int& door);
-bool didTheyWin(int door, int choice);
-int theOtherDoor(int door, int& leftover);
-void switchTheDoor(int& door, char answer, int leftover);
+int chooseTheDoor(int& door); // Randomly chooses the door with the money behind it
+bool didTheyWin(int door, int choice); // Checks to see if the user chose the correct door
+int theOtherDoor(int door, int& leftover); // Randomly decides what door with a goat is to be revealed to the user 
+void switchTheDoor(int& door, char answer, int leftover); // Switches the user's door if they want to
 
 int main(int argc, const char * argv[])
 {
@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
         cout << "CONGRATULATIONS! YOU WON! $$$" << endl;
     }
     else {
-        cout << "Aww! Well say hello to your new friend, Bill. Better luck next time!" << endl;
+        cout << "Aww! Well say hello to your new friend, Billy. Better luck next time!" << endl;
     }
     
     return 0;
