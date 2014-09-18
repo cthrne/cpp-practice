@@ -1,0 +1,93 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+int chooseTheDoor(int& door);
+bool didTheyWin(int door, int choice);
+int theOtherDoor(int door, int& leftover);
+void switchTheDoor(int& door, char answer, int leftover);
+
+int main(int argc, const char * argv[])
+{
+    int door;
+    int choice;
+    int fakeDoor;
+    int remainingChoice;
+    bool results = false;
+    char answer;
+    
+    cout << "LETS PLAY A GAME! Here are the rules. We have three doors and behind one of the doors is $1,000,000. Behind the other two doors are goats (friendly, I heard.) All you have to do is pick a door! So, which will you choose? Door 1, 2, or 3? " << endl;
+    cin >> choice;
+    
+    door = chooseTheDoor(door);
+    results = didTheyWin(door, choice);
+    
+    fakeDoor = theOtherDoor(door, remainingChoice);
+    cout << "But hold on. Before we tell you if you chose the right door, we're going to tell that Door " << fakeDoor << " has a goat behind it. With this information, do you want to stick with your door or switch to Door " << remainingChoice << "?" << endl;
+    cin >> answer;
+    switchTheDoor(door, answer, remainingChoice);
+    
+    results = didTheyWin(door, choice);
+    if (results == true) {
+        cout << "CONGRATULATIONS! YOU WON! $$$" << endl;
+    }
+    else {
+        cout << "Aww! Well say hello to your new friend, Bill. Better luck next time!" << endl;
+    }
+    
+    return 0;
+}
+
+int chooseTheDoor(int& door) {
+    srand(time(0));
+    door = (rand() % 3) + 1;
+    return door;
+}
+
+bool didTheyWin(int door, int choice) {
+    if (door == choice)
+        return true;
+    else
+        return false;
+}
+
+int theOtherDoor(int door, int& leftover){
+    int random = rand();
+    if (random % 2 == 0) {
+        if (door == 1) {
+            leftover = 3;
+            return 2;
+        }
+        else if (door == 2) {
+            leftover = 1;
+            return 3;
+        }
+        else {
+            leftover = 2;
+            return 1;
+        }
+    }
+    else {
+        if (door == 1) {
+            leftover = 2;
+            return 3;
+        }
+        else if (door == 2) {
+            leftover = 3;
+            return 1;
+        }
+        else {
+            leftover = 1;
+            return 2;
+        }
+    }
+}
+
+void switchTheDoor(int& door, char answer, int leftover) {
+    if (answer == 'Y' || answer == 'y') {
+        door = leftover;
+    }
+    else
+        return;
+}
