@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+void getTime(int& hours, int& minutes);
+void convertTime(int& hours, char& sun);
+void outputTime(int hours, int minutes, char day);
+
+int main()
+{
+    int hours, minutes;
+    char day;
+    char response;
+    bool again;
+    
+    do {
+        again = false;
+        
+        getTime(hours, minutes);
+        convertTime(hours, day);
+        outputTime(hours, minutes, day);
+        
+        cout << "Do you want to check another time? ";
+        cin >> response;
+        if (response == 'Y' || response == 'y') {
+            again = true;
+        }
+        else
+            again = false;
+    } while (again);
+    
+    return 0;
+}
+
+void getTime(int& hours, int& minutes) {
+    cout << "What time is it?" << endl;
+    cout << "Hours: ";
+    cin >> hours;
+    cout << "Minutes: ";
+    cin >> minutes;
+}
+
+void convertTime(int& hours, char& sun) {
+    if (hours >=0 && hours <= 12) {
+        sun = 'A';
+    }
+    else {
+        hours -= 12;
+        sun = 'P';
+    }
+}
+
+void outputTime(int hours, int minutes, char day) {
+    if (day == 'A') {
+        cout << "Converting it to 12-hour notation, we get " << hours << ":" << minutes << " " << "A.M." << endl;
+    }
+    else {
+        cout << "Converting it to 12-hour notation, we get " << hours << ":" << minutes << " " << "P.M." << endl;
+    }
+}
