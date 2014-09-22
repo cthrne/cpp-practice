@@ -1,0 +1,36 @@
+/*
+  Deletes repeated letters in the character string and actively changes the size of the array.
+*/
+
+#include <iostream>
+using namespace std;
+
+void deleteRepeats(char a[], int& size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = i+1; j < size; j++) {
+            if (a[i] == a[j]) {
+                size--;
+                for (int k = j; k < size; k++) {
+                    a[k] = a[k+1];
+                }
+                --i; // allows us to check the array again from our initial position to find possible multiple occurrences
+                break;
+            }
+        }
+    }
+}
+
+int main() {
+    
+    char a[10] = "aaaaaae";
+    int size = 7;
+    deleteRepeats(a, size);
+    
+    for (int i = 0; i < size; i++) {
+        cout << a[i] << " ";
+    }
+    
+    cout << "The size: " << size << endl;
+    
+    return 0;
+}
