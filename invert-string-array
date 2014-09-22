@@ -1,0 +1,31 @@
+/*
+  Write a program that will read up to ten letters into an array and write the letters back to the screen 
+  in the reverse order. For example, if the input is "abcd." then the output should be "dcba"
+*/
+
+#include <iostream>
+using namespace std;
+
+const int MAX_ARRAY_SIZE = 1000;
+
+int main () {
+    
+    char characterArray[MAX_ARRAY_SIZE], character;
+    int workingSize = -1;
+    bool more = true;
+    while (more) {
+        cout << "Enter a character: ";
+        cin >> character;
+        if (character == '.') {
+            more = false;
+        }
+        workingSize++;
+        characterArray[workingSize] = character;
+    }
+    
+    for (int i = workingSize; i > 0; i--) {
+        cout << characterArray[i-1] << " ";
+    }
+    
+    return 0;
+}
