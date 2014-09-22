@@ -1,5 +1,5 @@
 /*
-  Deletes repeated letters in the character string and actively changes the size of the array.
+  Deletes repeated letters in the character array and actively changes the size of the array.
 */
 
 #include <iostream>
