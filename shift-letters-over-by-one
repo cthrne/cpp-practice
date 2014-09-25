@@ -1,0 +1,55 @@
+/*
+  Shift letters a-z over by one, such that a = b, b = c, ... z = a. Capitalize vowels after the shift has been made.
+*/
+
+#include <iostream>
+#include <stdio.h>
+#include <cctype>
+using namespace std;
+
+string LetterChanges(string str) {
+    
+    string temp = "";
+    int slength = (int) str.length();
+    char charArray[slength];
+    for (int i = 0; i < slength; i++) {
+        charArray[i] = str[i];
+    }
+    
+    for (int i = 0; i < slength; i++) {
+        if (!ispunct(charArray[i]) && isalpha(charArray[i])) {
+            if (charArray[i] == 'z')
+                charArray[i] = 'a';
+            else
+                charArray[i] = charArray[i]+1; }
+    }
+    
+    for (int i = 0; i < slength; i++) {
+        switch (charArray[i]) {
+                case 'a':
+                    charArray[i] = 'A';
+                    break;
+                case 'e':
+                    charArray[i] = 'E';
+                    break;
+                case 'i':
+                    charArray[i] = 'I';
+                    break;
+                case 'o':
+                    charArray[i] = 'O';
+                    break;
+                case 'u':
+                    charArray[i] = 'U';
+                    break;
+            default:
+                continue;
+        }
+    }
+    
+    for (int i = 0; i < slength; i++) {
+        temp += charArray[i];
+    }
+    str = temp;
+    return str;
+    
+}
