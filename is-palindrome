@@ -1,0 +1,34 @@
+/*
+  Checks to see if the string is a palindrome or not.
+*/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string isPalindrome(string str) {
+    
+    string temp = "";
+    bool match = true;
+    int slength = str.length();
+    
+    for (int i = 1; i <= slength; i++) {
+        temp += str.substr(slength-i, 1);
+    }
+    
+    for (int i = 0; i < slength; i++) {
+        if (temp[i] == ' ' || str[i] == ' ')
+            continue;
+        if (temp[i] != str[i])
+            match = false;
+    }
+    
+    if (match) {
+        temp = "true";
+    }
+    else {
+        temp = "false";
+    }
+    
+    return temp;
+}
