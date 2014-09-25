@@ -1,0 +1,46 @@
+/*
+  Finds the longest word in a sentence.
+*/
+
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <ctype.h>
+using namespace std;
+
+const int MAX_SIZE = 10000;
+
+string longestWord(string sen) {
+    string words[MAX_SIZE];
+    string temp = "";
+    int slength = (int) sen.length();
+    int num_words = 0;
+    string longest = "";
+    
+    for (int i = 0; i < slength; i++) {
+        if (sen[i] != ' ') {
+            if (!ispunct(sen[i]))
+                temp += sen[i];
+            if (i == (slength - 1)) {
+                words[num_words] = temp;
+                num_words++;
+            }
+        }
+        else {
+            words[num_words] = temp;
+            num_words++;
+            temp = "";
+        }
+    }
+    
+    int biggestIndex = 0;
+    int longestLength = 0;
+    for (int i = 0; i < num_words; i++) {
+        if (words[i].length() > longestLength) {
+            longestLength = (int) words[i].length();
+            biggestIndex = i;
+        }
+    }
+    
+    return words[biggestIndex];
+}
