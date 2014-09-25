@@ -1,0 +1,52 @@
+/*
+  Capitalize the first letter of every word in the sentence.
+*/
+
+#include <iostream>
+#include <ctype.h>
+#include <stdio.h>
+#include <string>
+using namespace std;
+
+const int MAX_SIZE = 10000;
+
+string LetterCapitalize(string str) {
+    
+    string words[MAX_SIZE];
+    int num_words = 0;
+    int slength = (int) str.length();
+    string temp = "";
+    string result = "";
+    
+    for (int i = 0; i < slength; i++) {
+        if (str[i] != ' ') {
+            if (!ispunct(str[i]))
+                temp += str[i];
+            if (i == (slength - 1)) {
+                words[num_words] = temp;
+                num_words++;
+            }
+        }
+        else {
+            words[num_words] = temp;
+            num_words++;
+            temp = "";
+        }
+    }
+    
+    string one = "";
+    for (int i = 0; i < num_words; i++) {
+        one = words[i];
+        one[0] = toupper(one[0]);
+        words[i] = one;
+    }
+    
+    for (int i = 0; i < num_words; i++) {
+        result += words[i] + " ";
+    }
+    
+    result = result.substr(0, result.length()-1);
+    
+    return result;
+    
+}
