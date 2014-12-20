@@ -1,0 +1,99 @@
+#include <iostream>
+using namespace std;
+char block[10] = {'-',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+char marker;
+
+void board(); // sets up the playing board
+void move(); // places Xs and Os on the board
+bool play(); // check to see if someone has won
+
+int main(int argc, const char * argv[]) {
+    
+    int turn = 0;
+    bool keepgoing = play();
+    
+    do {
+        
+        board();
+        if (turn % 2 == 0)
+            marker = 'X';
+        else
+            marker = 'O';
+        move();
+        turn++;
+        
+        keepgoing = play();
+        
+    } while(keepgoing == true);
+    
+    board();
+    cout << "Player " << marker << " won!" << endl;
+    return 0;
+}
+
+void board() {
+    
+    cout << "   |   |   " << endl;
+    cout << " " << block[1] << " | " << block[2] << " | " << block[3] << "  " << endl;
+    cout << "___|___|___" << endl;
+    cout << "   |   |   " << endl;
+    cout << " " << block[4] << " | " << block[5] << " | " << block[6] << "  " << endl;
+    cout << "___|___|___" << endl;
+    cout << "   |   |   " << endl;
+    cout << " " << block[7] << " | " << block[8] << " | " << block[9] << "  " << endl;
+    cout << "   |   |   " << endl;
+    
+}
+
+void move() {
+    
+    int spot;
+    cout << "Place my marker here: ";
+    cin >> spot;
+    
+    if (spot == 1 && block[1] == ' ')
+        block[1] = marker;
+    else if (spot == 2 && block[2] == ' ')
+        block[2] = marker;
+    else if (spot == 3 && block[3] == ' ')
+        block[3] = marker;
+    else if (spot == 4 && block[4] == ' ')
+        block[4] = marker;
+    else if (spot == 5 && block[5] == ' ')
+        block[5] = marker;
+    else if (spot == 6 && block[6] == ' ')
+        block[6] = marker;
+    else if (spot == 7 && block[7] == ' ')
+        block[7] = marker;
+    else if (spot == 8 && block[8] == ' ')
+        block[8] = marker;
+    else if (spot == 9 && block[9] == ' ')
+        block[9] = marker;
+    else {
+        cout << "Invalid move. Try again." << endl;
+        move();
+    }
+    
+}
+
+bool play() {
+    
+    if (block[1] != ' ' && block[1] == block[2] && block[2] == block[3])
+        return false;
+    else if (block[4] != ' ' && block[4] == block[5] && block[5] == block[6])
+        return false;
+    else if (block[7] != ' ' && block[7] == block[8] && block[8] == block[9])
+        return false;
+    else if (block[1] != ' ' && block[1] == block[4] && block[4] == block[7])
+        return false;
+    else if (block[2] != ' ' && block[2] == block[5] && block[5] == block[8])
+        return false;
+    else if (block[3] != ' ' && block[3] == block[6] && block[6] == block[9])
+        return false;
+    else if (block[1] != ' ' && block[1] == block[5] && block[5] == block[9])
+        return false;
+    else if (block[3] != ' ' && block[3] == block[5] && block[5] == block[7])
+        return false;
+    
+    return true;
+}
