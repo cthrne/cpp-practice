@@ -1,0 +1,16 @@
+/* Input expected: array
+   Result: bool value for whether the array passed in was a valid fibonacci sequence or not */
+
+bool isFib(int array[], int size) {
+
+    if (array[0] != 0 && array[1] != 1) {
+        return false;
+    }
+    
+    for (int start = 2; start < size; start++) {
+        if (array[start] != (array[start-1] + array[start-2]))
+            return false;
+    }
+    
+    return true;
+}
